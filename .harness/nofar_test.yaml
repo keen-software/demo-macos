@@ -29,7 +29,7 @@ pipeline:
                       steps:
                           - step:
                                 type: Run
-                                name: echo1
+                                name: echo
                                 identifier: echo
                                 spec:
                                     connectorRef: account.harnessImage
