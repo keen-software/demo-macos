@@ -1,0 +1,14 @@
+inputSet:
+  identifier: "PR_inputs"
+  name: "PR_inputs"
+  orgIdentifier: "default"
+  projectIdentifier: "RajathaTest"
+  pipeline:
+    identifier: "nofar"
+    properties:
+      ci:
+        codebase:
+          build:
+            type: "PR"
+            spec:
+              number: "<+trigger.prNumber>"

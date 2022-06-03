@@ -1,0 +1,38 @@
+pipeline:
+    name: nofar
+    identifier: nofar
+    projectIdentifier: RajathaTest
+    orgIdentifier: default
+    storeType: REMOTE
+    remoteType: create
+    tags: {}
+    properties:
+        ci:
+            codebase:
+                connectorRef: account.Nofar_github
+                build: <+input>
+    stages:
+        - stage:
+              name: test new git exp
+              identifier: test_new_git_exp
+              type: CI
+              spec:
+                  cloneCodebase: true
+                  infrastructure:
+                      type: KubernetesDirect
+                      spec:
+                          connectorRef: account.CItestK8sConnectorArAjeBeKWo
+                          namespace: harness-qa-delegate
+                          automountServiceAccountToken: true
+                          nodeSelector: {}
+                  execution:
+                      steps:
+                          - step:
+                                type: Run
+                                name: echo1
+                                identifier: echo
+                                spec:
+                                    connectorRef: account.harnessImage
+                                    image: alpine
+                                    shell: Sh
+                                    command: echo <+codebase.commitSHA>
